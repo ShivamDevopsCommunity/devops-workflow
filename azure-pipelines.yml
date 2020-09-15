@@ -20,6 +20,3 @@ stages:
       displayName: "Add Tag to git"
       inputs:
         staticTagName: "TEST-$(Build.BuildNumber)"
-    - task: DotNetCoreCLI@2
-      inputs:
-            command: 'build'
