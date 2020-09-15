@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  
+- stage: tag
+  displayName: "Create git Tag"
+  jobs:
+  - job: tag
+    steps:
+    - task: git-tag-on-release-task@9
+      displayName: "Add Tag to git"
+      inputs:
+        staticTagName: "TEST-$(Build.BuildNumber)"
+    - task: DotNetCoreCLI@2
+      inputs:
+            command: 'build'
